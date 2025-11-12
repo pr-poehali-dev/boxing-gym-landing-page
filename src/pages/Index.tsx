@@ -80,7 +80,7 @@ export default function Index() {
       >
         <div className="text-center z-10 px-4 animate-fade-in">
           <h1 className="font-oswald text-6xl md:text-8xl font-bold text-white mb-4 tracking-wider">
-            FIGHT <span className="text-primary">CLUB</span>
+            БОКС <span className="text-primary">ЧЕРНОЗЁМ</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8">
             Тренировочный зал бокса для настоящих бойцов
@@ -335,10 +335,10 @@ export default function Index() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
               <h3 className="font-oswald text-2xl font-bold text-foreground mb-2">
-                FIGHT <span className="text-primary">CLUB</span>
+                БОКС <span className="text-primary">ЧЕРНОЗЁМ</span>
               </h3>
               <p className="text-muted-foreground">
-                © 2024 Fight Club. Все права защищены.
+                © 2024 Бокс Чернозём. Все права защищены.
               </p>
             </div>
             <div className="flex gap-4">
