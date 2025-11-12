@@ -79,15 +79,20 @@ export default function Index() {
         style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://cdn.poehali.dev/projects/09e23db3-1c92-4e98-bc7a-29bec5ee0d4c/files/3b452744-8d87-4e08-8f7d-e95f6dfd5046.jpg')` }}
       >
         <div className="text-center z-10 px-4 animate-fade-in">
-          <h1 className="font-oswald text-6xl md:text-8xl font-bold text-white mb-4 tracking-wider">
-            БОКС <span className="text-primary">ЧЕРНОЗЁМ</span>
+          <img 
+            src="https://cdn.poehali.dev/files/096bc160-0663-479b-9778-bcd40c492490.png" 
+            alt="Чернозём Boxing Gym" 
+            className="w-64 md:w-80 mx-auto mb-8"
+          />
+          <h1 className="font-oswald text-5xl md:text-7xl font-bold text-white mb-4 tracking-widest">
+            ЧЕРНОЗЁМ BOXING GYM
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8">
             Тренировочный зал бокса для настоящих бойцов
           </p>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-oswald text-lg px-8 py-6">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-black font-oswald text-lg px-8 py-6">
                 ЗАПИСАТЬСЯ НА ТРЕНИРОВКУ
               </Button>
             </DialogTrigger>
@@ -134,7 +139,7 @@ export default function Index() {
                     <option value="advanced">Продвинутый</option>
                   </select>
                 </div>
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-oswald text-lg">
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-black font-oswald text-lg">
                   ОТПРАВИТЬ ЗАЯВКУ
                 </Button>
               </form>
@@ -334,11 +339,11 @@ export default function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
-              <h3 className="font-oswald text-2xl font-bold text-foreground mb-2">
-                БОКС <span className="text-primary">ЧЕРНОЗЁМ</span>
+              <h3 className="font-oswald text-2xl font-bold text-foreground mb-2 tracking-wider">
+                ЧЕРНОЗЁМ <span className="text-primary">BOXING GYM</span>
               </h3>
               <p className="text-muted-foreground">
-                © 2024 Бокс Чернозём. Все права защищены.
+                © 2024 Чернозём Boxing Gym. Все права защищены.
               </p>
             </div>
             <div className="flex gap-4">
