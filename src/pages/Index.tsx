@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -54,6 +54,13 @@ export default function Index() {
   const prevTrainer = () => {
     setCurrentTrainer((prev) => (prev - 1 + trainers.length) % trainers.length);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextTrainer();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -323,11 +330,52 @@ export default function Index() {
         </div>
       </section>
 
-      <footer className="bg-background border-t border-border py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-muted-foreground">
-            © 2024 Fight Club. Все права защищены.
-          </p>
+      <footer className="bg-background border-t border-border py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-center md:text-left">
+              <h3 className="font-oswald text-2xl font-bold text-foreground mb-2">
+                FIGHT <span className="text-primary">CLUB</span>
+              </h3>
+              <p className="text-muted-foreground">
+                © 2024 Fight Club. Все права защищены.
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <a
+                href="https://vk.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-muted hover:bg-primary transition-colors p-3 rounded-lg"
+              >
+                <Icon name="Share2" size={24} className="text-foreground" />
+              </a>
+              <a
+                href="https://t.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-muted hover:bg-primary transition-colors p-3 rounded-lg"
+              >
+                <Icon name="Send" size={24} className="text-foreground" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-muted hover:bg-primary transition-colors p-3 rounded-lg"
+              >
+                <Icon name="Instagram" size={24} className="text-foreground" />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-muted hover:bg-primary transition-colors p-3 rounded-lg"
+              >
+                <Icon name="Youtube" size={24} className="text-foreground" />
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
