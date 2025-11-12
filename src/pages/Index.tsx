@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
 
 const trainers = [
@@ -39,6 +43,9 @@ const schedule = [
 
 export default function Index() {
   const [currentTrainer, setCurrentTrainer] = useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: '', phone: '', level: 'beginner' });
+  const { toast } = useToast();
 
   const nextTrainer = () => {
     setCurrentTrainer((prev) => (prev + 1) % trainers.length);
@@ -46,6 +53,16 @@ export default function Index() {
 
   const prevTrainer = () => {
     setCurrentTrainer((prev) => (prev - 1 + trainers.length) % trainers.length);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: 'Заявка отправлена!',
+      description: `${formData.name}, мы свяжемся с вами в ближайшее время`,
+    });
+    setIsDialogOpen(false);
+    setFormData({ name: '', phone: '', level: 'beginner' });
   };
 
   return (
@@ -61,9 +78,61 @@ export default function Index() {
           <p className="text-xl md:text-2xl text-gray-300 mb-8">
             Тренировочный зал бокса для настоящих бойцов
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-oswald text-lg px-8 py-6">
-            ЗАПИСАТЬСЯ НА ТРЕНИРОВКУ
-          </Button>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-oswald text-lg px-8 py-6">
+                ЗАПИСАТЬСЯ НА ТРЕНИРОВКУ
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-card border-border">
+              <DialogHeader>
+                <DialogTitle className="font-oswald text-3xl text-foreground">
+                  ЗАПИСЬ НА <span className="text-primary">ТРЕНИРОВКУ</span>
+                </DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-foreground">Ваше имя</Label>
+                  <Input
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Иван Иванов"
+                    required
+                    className="bg-muted border-border text-foreground"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className="text-foreground">Телефон</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="+7 (999) 123-45-67"
+                    required
+                    className="bg-muted border-border text-foreground"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="level" className="text-foreground">Уровень подготовки</Label>
+                  <select
+                    id="level"
+                    value={formData.level}
+                    onChange={(e) => setFormData({ ...formData, level: e.target.value })}
+                    className="w-full bg-muted border border-border text-foreground rounded-md px-3 py-2"
+                  >
+                    <option value="beginner">Начинающий</option>
+                    <option value="intermediate">Средний</option>
+                    <option value="advanced">Продвинутый</option>
+                  </select>
+                </div>
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-oswald text-lg">
+                  ОТПРАВИТЬ ЗАЯВКУ
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <Icon name="ChevronDown" size={40} className="text-white/60" />
